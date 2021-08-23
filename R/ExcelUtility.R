@@ -40,15 +40,19 @@ spaceBetweenNames <- function(dta){
 #' @param workbook create with createWorkbook() or load with loadWorkbook("path/to/workbook.xlsx")
 #' @param sheet
 #' @param dta `data.frame` or `data.table`
-#' @param column_name column that needs formatting
+#' @param column_pattern provide a pattern that captures the column names(s). Exact names for specific column.
 #' @param format_name use `PERCENTAGE`, `CURRENCY`, `ACCOUNTING`
 #'
 #' @return the same workbook
 #' @export
 #'
 #' @examples
-assignNumberFormat <- function(workbook, sheet, dta, column_name, format_name = "PERCENTAGE"){
-  openxlsx::addStyle(workbook, sheet, openxlsx::createStyle(numFmt = format_name), rows = 2:(dim(dta)[1] + 1), cols = grep(column_name, names(dta)))
+assignNumberFormat <- function(workbook, sheet, dta, column_pattern, format_name = "PERCENTAGE"){
+  column_numbers <- grep(column_pattern, names(dta))
+  for(i in column_numbers){
+    openxlsx::addStyle(
+      workbook, sheet, openxlsx::createStyle(numFmt = format_name), rows = 2:(dim(dta)[1] + 1), cols = i)
+  }
   return(workbook)
 }
 

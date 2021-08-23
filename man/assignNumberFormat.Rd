@@ -8,7 +8,7 @@ assignNumberFormat(
   workbook,
   sheet,
   dta,
-  column_name,
+  column_pattern,
   format_name = "PERCENTAGE"
 )
 }
@@ -17,9 +17,9 @@ assignNumberFormat(
 
 \item{dta}{`data.frame` or `data.table`}
 
-\item{column_name}{column that needs formatting}
-
 \item{format_name}{use `PERCENTAGE`, `CURRENCY`, `ACCOUNTING`}
+
+\item{column_name}{column that needs formatting}
 }
 \value{
 the same workbook
