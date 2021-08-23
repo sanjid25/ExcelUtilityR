@@ -9,7 +9,8 @@ assignNumberFormat(
   sheet,
   dta,
   column_pattern,
-  format_name = "PERCENTAGE"
+  format_name = "PERCENTAGE",
+  ...
 )
 }
 \arguments{
@@ -17,9 +18,12 @@ assignNumberFormat(
 
 \item{dta}{`data.frame` or `data.table`}
 
+\item{column_pattern}{provide a pattern that captures the column names(s). Exact names for specific column.}
+
 \item{format_name}{use `PERCENTAGE`, `CURRENCY`, `ACCOUNTING`}
 
-\item{column_name}{column that needs formatting}
+\item{...}{`optional` add more options to the `grep` call within this function.
+This might include `ignore.case = TRUE` or `invert = TRUE`}
 }
 \value{
 the same workbook

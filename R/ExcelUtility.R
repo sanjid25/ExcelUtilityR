@@ -42,13 +42,14 @@ spaceBetweenNames <- function(dta){
 #' @param dta `data.frame` or `data.table`
 #' @param column_pattern provide a pattern that captures the column names(s). Exact names for specific column.
 #' @param format_name use `PERCENTAGE`, `CURRENCY`, `ACCOUNTING`
-#'
+#' @param ... `optional` add more options to the `grep` call within this function.
+#' This might include `ignore.case = TRUE` or `invert = TRUE`
 #' @return the same workbook
 #' @export
 #'
 #' @examples
-assignNumberFormat <- function(workbook, sheet, dta, column_pattern, format_name = "PERCENTAGE"){
-  column_numbers <- grep(column_pattern, names(dta))
+assignNumberFormat <- function(workbook, sheet, dta, column_pattern, format_name = "PERCENTAGE", ...){
+  column_numbers <- grep(column_pattern, names(dta), ...)
   for(i in column_numbers){
     openxlsx::addStyle(
       workbook, sheet, openxlsx::createStyle(numFmt = format_name), rows = 2:(dim(dta)[1] + 1), cols = i)
